@@ -2,6 +2,9 @@
 
 A Python bot that can automatically follow users and favorite/RT tweets associated with a specific search query on Twitter. Also has the ability to unfollow all users not currently following you back.
 
+## my experience with a non-optimized first implementation logic (not available in this repo):
+klout score 52 in 6 days with some hours downtime, because i forgot to implement exception handling
+
 ##Disclaimer
 
 I hold no liability for what you do with this script or what happens to you by using this script. Abusing this script *can* get you banned from Twitter, so make sure to read up on proper usage of the Twitter API.
