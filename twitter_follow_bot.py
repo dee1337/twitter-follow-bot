@@ -17,7 +17,7 @@ Follow Bot library. If not, see http://www.gnu.org/licenses/.
 """
 
 from twitter import Twitter, OAuth, TwitterHTTPError
-import os
+import os, random
 
 # put your tokens, keys, secrets, and Twitter handle in the following variables
 OAUTH_TOKEN = ""
@@ -38,8 +38,18 @@ def search_tweets(q, count=100, result_type="recent"):
     """
         Returns a list of tweets matching a certain phrase (hashtag, word, etc.)
     """
-
-    return t.search.tweets(q=q, result_type=result_type, count=count)
+    try:
+        res = t.search.tweets(q=q, result_type=result_type, count=count)
+        # print "search_tweets(q, count, result_type):", res
+    except Exception as e:
+        print "Exception occured:", e
+        breaktime = random.randint(60,300) # 1-5 mins
+        print "error fetching data...waiting for {0} seconds to try again".format(breaktime)
+        # print "sending errormsg as mail in between..."
+        # mailAlert(e)
+        time.sleep(breaktime)
+        search_tweets(q, count=100, result_type="recent")
+    return res
 
 
 def auto_fav(q, count=100, result_type="recent"):
